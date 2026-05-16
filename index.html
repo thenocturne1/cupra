@@ -801,19 +801,18 @@
             background: #444;
         }
     </style>
-<base target="_blank">
 </head>
 <body>
 
     <!-- Top Bar -->
     <div class="top-bar">
-        Free shipping on orders over €25 — <a href="#">Shop Now</a>
+        Kostenloser Versand ab €60 — <a href="#">Jetzt shoppen</a>
     </div>
 
     <!-- Navigation -->
     <nav class="nav" id="navbar">
         <div class="nav-main">
-            <a href="#" class="nav-logo">BIOCUPRA</a>
+            <a href="biocupra.html" class="nav-logo" id="navLogo">BIOCUPRA</a>
             
             <ul class="nav-links">
                 <li><a href="#new">New</a></li>
@@ -821,7 +820,7 @@
                 <li><a href="#collections">Collections</a></li>
                 <li><a href="#cosmetics">Cosmetics</a></li>
                 <li><a href="#gifts">Gifts</a></li>
-                <li><a href="#science">Behind the Science</a></li>
+                <li><a href="biocupra-science.html">Behind the Science</a></li>
             </ul>
 
             <div class="nav-icons">
@@ -1152,6 +1151,17 @@
 
         window.addEventListener('scroll', updateOnScroll, { passive: true });
         updateOnScroll();
+
+        // Nav logo blue shift on scroll
+        const navLogoEl = document.getElementById('navLogo');
+        function updateNavLogoColor() {
+            const t = Math.min(Math.max(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight), 0), 1);
+            const r = Math.round(255 + (100 - 255) * t);
+            const g = Math.round(255 + (185 - 255) * t);
+            if (navLogoEl) navLogoEl.style.color = `rgb(${r},${g},255)`;
+        }
+        window.addEventListener('scroll', updateNavLogoColor, { passive: true });
+        updateNavLogoColor();
 
         // Intersection Observer for fade-in animations
         const observerOptions = {
