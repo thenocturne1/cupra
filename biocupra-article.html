@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIOCUPRA | Artikel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --color-bg: #000;
+            --color-text: #fff;
+            --color-text-muted: #888;
+            --color-border: #222;
+            --font-primary: 'Inter', sans-serif;
+        }
+        body { font-family: var(--font-primary); background: var(--color-bg); color: var(--color-text); -webkit-font-smoothing: antialiased; }
+
+        .top-bar { background: #111; text-align: center; padding: 10px 20px; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px solid var(--color-border); }
+        .top-bar a { color: var(--color-text); text-decoration: underline; text-underline-offset: 2px; }
+
+        .nav { position: sticky; top: 0; z-index: 1000; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--color-border); }
+        .nav-main { display: flex; justify-content: space-between; align-items: center; padding: 0 40px; height: 60px; }
+        .nav-logo { font-size: 18px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--color-text); text-decoration: none; }
+        .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+        .nav-links a { color: var(--color-text); text-decoration: none; font-size: 12px; opacity: 0.7; transition: opacity 0.3s; padding: 20px 0; letter-spacing: 0.5px; }
+        .nav-links a:hover { opacity: 1; }
+        .nav-icons { display: flex; gap: 20px; align-items: center; }
+        .nav-icon { width: 20px; height: 20px; cursor: pointer; opacity: 0.9; stroke-width: 1.5; fill: none; stroke: currentColor; }
+
+        .article-hero {
+            width: 100%;
+            height: 50vh;
+            min-height: 360px;
+            background: #080808;
+            display: flex;
+            align-items: flex-end;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .article-hero-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 60% 40%, rgba(15,45,85,0.5) 0%, transparent 60%), #080808;
+        }
+        .article-hero-content { position: relative; z-index: 1; max-width: 760px; }
+        .article-hero-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 16px; }
+        .article-hero-title { font-size: clamp(28px, 4vw, 48px); font-weight: 300; line-height: 1.15; letter-spacing: -0.5px; }
+
+        .article-body {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 80px 40px 120px;
+        }
+        .article-coming-soon {
+            text-align: center;
+            padding: 80px 0;
+        }
+        .article-coming-soon p {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+        .article-coming-soon .line {
+            width: 40px;
+            height: 1px;
+            background: var(--color-border);
+            margin: 0 auto 32px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 4px;
+            transition: color 0.3s, border-color 0.3s;
+            margin-top: 40px;
+            display: inline-flex;
+        }
+        .back-link:hover { color: var(--color-text); border-color: rgba(255,255,255,0.35); }
+        .back-link svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+        .footer { border-top: 1px solid var(--color-border); padding: 60px 40px 40px; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; padding-top: 40px; border-top: 1px solid var(--color-border); max-width: 1400px; margin: 0 auto; }
+        .footer-copyright { font-size: 12px; color: var(--color-text-muted); }
+        .footer-social { display: flex; gap: 24px; }
+        .footer-social a { color: var(--color-text-muted); text-decoration: none; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+        .footer-social a:hover { color: var(--color-text); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .article-hero { padding: 40px 24px; }
+            .article-body { padding: 60px 24px 80px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">Kostenloser Versand ab €60 — <a href="#">Jetzt shoppen</a></div>
+
+<nav class="nav">
+    <div class="nav-main">
+        <a href="biocupra.html" class="nav-logo">BIOCUPRA</a>
+        <ul class="nav-links">
+            <li><a href="biocupra.html">New</a></li>
+            <li><a href="biocupra.html">Skincare</a></li>
+            <li><a href="biocupra.html">Collections</a></li>
+            <li><a href="biocupra.html">Cosmetics</a></li>
+            <li><a href="biocupra.html">Gifts</a></li>
+            <li><a href="biocupra-science.html">Behind the Science</a></li>
+        </ul>
+        <div class="nav-icons">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        </div>
+    </div>
+</nav>
+
+<div class="article-hero">
+    <div class="article-hero-bg"></div>
+    <div class="article-hero-content">
+        <p class="article-hero-label">Behind the Science</p>
+        <h1 class="article-hero-title">Dieser Artikel wird<br>in Kürze verfügbar sein</h1>
+    </div>
+</div>
+
+<div class="article-body">
+    <div class="article-coming-soon">
+        <div class="line"></div>
+        <p>Artikel in Vorbereitung</p>
+        <p style="font-size:14px; color:rgba(255,255,255,0.4); text-transform:none; letter-spacing:0; line-height:1.7; max-width:480px; margin:0 auto 40px;">Dieser Artikel wird gerade vorbereitet und erscheint in Kürze. Die wissenschaftlichen Inhalte werden sorgfältig recherchiert und aufbereitet.</p>
+        <a href="biocupra-science.html" class="back-link">
+            <svg viewBox="0 0 24 24"><line x1="17" y1="7" x2="7" y2="17"/><polyline points="17 17 7 17 7 7"/></svg>
+            Zurück zur Übersicht
+        </a>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 BIOCUPRA. Alle Rechte vorbehalten.</p>
+        <div class="footer-social">
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+            <a href="#">YouTube</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
