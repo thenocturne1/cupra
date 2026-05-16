@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIOCUPRA | GHK-Cu Advanced Serum</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    colors: {
+                        niod: {
+                            black: '#1a1a1a',
+                            gray: '#f5f5f5',
+                            border: '#e5e5e5',
+                            text: '#333333',
+                            light: '#666666',
+                            accent: '#1a1a1a'
+                        }
+                    },
+                    letterSpacing: {
+                        'widest': '0.15em',
+                        'ultra': '0.25em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a1a;
+            background: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+        .mono-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #666;
+        }
+        .product-title {
+            font-size: 1.75rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            font-weight: 400;
+        }
+        .section-title {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+        .value-text {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #333;
+            font-weight: 300;
+        }
+        .ingredient-list {
+            font-size: 0.8rem;
+            line-height: 1.8;
+            color: #444;
+            font-weight: 300;
+        }
+        .breadcrumb {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #999;
+        }
+        .breadcrumb a:hover { color: #1a1a1a; }
+        .nav-link {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .price {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+        }
+        .btn-primary {
+            background: #1a1a1a;
+            color: white;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+        .thumbnail {
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+            border-color: #1a1a1a;
+        }
+        .main-image { transition: opacity 0.4s ease; }
+        .tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: 1px solid #1a1a1a;
+            padding: 0.25rem 0.75rem;
+        }
+        .divider { height: 1px; background: #e5e5e5; width: 100%; }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+        }
+        .fade-in { animation: fadeIn 0.6s ease-in; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .slider-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #ccc; transition: all 0.3s ease;
+        }
+        .slider-dot.active { background: #1a1a1a; transform: scale(1.2); }
+        .concern-tag {
+            font-size: 0.75rem; color: #666;
+            position: relative; padding-left: 1rem;
+        }
+        .concern-tag::before {
+            content: ''; position: absolute;
+            left: 0; top: 50%; transform: translateY(-50%);
+            width: 4px; height: 4px;
+            background: #1a1a1a; border-radius: 50%;
+        }
+        .shipping-note { font-size: 0.75rem; color: #666; font-weight: 300; }
+        .shipping-note a { text-decoration: underline; text-underline-offset: 2px; }
+        .qty-selector { border: 1px solid #e5e5e5; font-family: 'Space Mono', monospace; font-size: 0.8rem; }
+        .qty-btn {
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.2s;
+        }
+        .qty-btn:hover { background: #f5f5f5; }
+        .image-container { background: #fafafa; position: relative; overflow: hidden; }
+        .image-container::after {
+            content: ''; position: absolute;
+            bottom: 0; left: 0; right: 0; height: 30%;
+            background: linear-gradient(to top, rgba(250,250,250,0.8), transparent);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-8">
+                <a href="javascript:window.close()" class="text-2xl font-bold tracking-tight">BIOCUPRA</a>
+                <div class="hidden md:flex gap-6">
+                    <a href="#" class="nav-link text-gray-600 hover:text-black transition-colors">Das Molekül</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-black transition-colors">Hautalterung</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-black transition-colors">Studien</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-black transition-colors">Anwendung</a>
+                    <a href="#" class="nav-link text-gray-600 hover:text-black transition-colors">Produkte</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="nav-link text-gray-600 hover:text-black">Suche</button>
+                <button class="nav-link text-gray-600 hover:text-black">Konto</button>
+                <button class="nav-link text-gray-600 hover:text-black relative">
+                    Warenkorb
+                    <span class="absolute -top-1 -right-2 w-4 h-4 bg-black text-white text-[0.6rem] flex items-center justify-center rounded-full">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-8 max-w-7xl mx-auto px-6">
+        <div class="breadcrumb flex gap-2 items-center">
+            <a href="javascript:window.close()" class="hover:text-black transition-colors">Home</a>
+            <span>/</span>
+            <span class="hover:text-black transition-colors cursor-pointer" onclick="window.close()">Produkte</span>
+            <span>/</span>
+            <span class="text-black">GHK-Cu Advanced Serum</span>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            <div class="lg:col-span-7">
+                <div class="sticky top-24">
+                    <div class="image-container aspect-[4/5] mb-4 relative group">
+                        <img id="mainImage"
+                             src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80"
+                             alt="BIOCUPRA GHK-Cu Advanced Serum"
+                             class="main-image w-full h-full object-cover">
+                        <button onclick="changeImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                        </button>
+                        <button onclick="changeImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </button>
+                    </div>
+                    <div class="flex gap-3 overflow-x-auto pb-2">
+                        <div class="thumbnail active w-20 h-20 flex-shrink-0 bg-gray-50" onclick="setImage(0)">
+                            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+                        </div>
+                        <div class="thumbnail w-20 h-20 flex-shrink-0 bg-gray-50" onclick="setImage(1)">
+                            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+                        </div>
+                        <div class="thumbnail w-20 h-20 flex-shrink-0 bg-gray-50" onclick="setImage(2)">
+                            <img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+                        </div>
+                        <div class="thumbnail w-20 h-20 flex-shrink-0 bg-gray-50" onclick="setImage(3)">
+                            <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div class="flex justify-center gap-2 mt-4 lg:hidden">
+                        <div class="slider-dot active" onclick="setImage(0)"></div>
+                        <div class="slider-dot" onclick="setImage(1)"></div>
+                        <div class="slider-dot" onclick="setImage(2)"></div>
+                        <div class="slider-dot" onclick="setImage(3)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 pt-4">
+                <div class="mb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="tag">Neu</span>
+                    </div>
+                    <h1 class="product-title mb-2">GHK-Cu Advanced Serum</h1>
+                    <p class="mono-label mb-6">(Kupfer-Peptid Konzentrat)</p>
+                    <p class="value-text mb-6 leading-relaxed">
+                        Ein präzisionsformuliertes Serum mit bioperfektem Kupfer-Peptid-Komplex für umfassende Anti-Aging-Wirkung auf molekularer Ebene.
+                    </p>
+                    <div class="price mb-8">€ 89.00</div>
+                </div>
+
+                <div class="divider mb-8"></div>
+
+                <div class="mb-8">
+                    <div class="info-grid mb-4">
+                        <span class="mono-label">Anwendung</span>
+                        <div class="flex flex-wrap gap-x-4 gap-y-2">
+                            <span class="concern-tag">Falten & Laxität</span>
+                            <span class="concern-tag">Photodamage</span>
+                            <span class="concern-tag">Post-Procedure</span>
+                            <span class="concern-tag">Hyperpigmentierung</span>
+                        </div>
+                    </div>
+                    <div class="info-grid mb-4">
+                        <span class="mono-label">Hauttyp</span>
+                        <span class="value-text">Alle Hauttypen</span>
+                    </div>
+                    <div class="info-grid">
+                        <span class="mono-label">Textur</span>
+                        <span class="value-text">Serum: Wasserbasiert</span>
+                    </div>
+                </div>
+
+                <div class="divider mb-8"></div>
+
+                <div class="mb-8">
+                    <div class="info-grid">
+                        <span class="mono-label">Wirkstoffe</span>
+                        <p class="ingredient-list">
+                            GHK-Cu (Copper Tripeptide-1), Palmitoyl Tripeptide-38, Superoxide Dismutase, Natriumhyaluronat (3-fach), Niacinamid
+                        </p>
+                    </div>
+                </div>
+
+                <div class="divider mb-8"></div>
+
+                <div class="mb-6">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="qty-selector flex items-center">
+                            <button class="qty-btn" onclick="updateQty(-1)">−</button>
+                            <span id="qty" class="w-10 text-center font-mono text-sm">1</span>
+                            <button class="qty-btn" onclick="updateQty(1)">+</button>
+                        </div>
+                        <button class="btn-primary flex-1 py-4 px-8 tracking-widest" onclick="addToBag()">
+                            In den Warenkorb
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="tag bg-transparent">Klinisch belegt</span>
+                        <p class="shipping-note">
+                            Kostenloser Versand ab 60 EUR <a href="#" class="text-black hover:no-underline">FAQ</a>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-12 space-y-4">
+                    <details class="group border-t border-gray-200 pt-4">
+                        <summary class="flex justify-between items-center cursor-pointer list-none">
+                            <span class="section-title">Beschreibung</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </span>
+                        </summary>
+                        <div class="mt-4 text-sm leading-relaxed text-gray-600 font-light">
+                            GHK-Cu wurde 1973 erstmals aus humanem Plasma isoliert und reguliert über 4.000 Gene im menschlichen Genom — im Wesentlichen versetzt es die DNA in einen biologisch jüngeren Zustand. Im Alter sinkt der natürliche GHK-Spiegel um mehr als 60 %. Dieses Serum ersetzt präzise, was die Zeit nimmt.
+                        </div>
+                    </details>
+                    <details class="group border-t border-gray-200 pt-4">
+                        <summary class="flex justify-between items-center cursor-pointer list-none">
+                            <span class="section-title">Anwendung</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </span>
+                        </summary>
+                        <div class="mt-4 text-sm leading-relaxed text-gray-600 font-light">
+                            Morgens und abends 3–4 Tropfen auf gereinigte Haut auftragen und einmassieren. Anschließend Feuchtigkeitspflege verwenden. Bei Kombination mit Retinol abends abwechselnd anwenden. Lichtschutz tagsüber empfohlen.
+                        </div>
+                    </details>
+                    <details class="group border-t border-gray-200 pt-4">
+                        <summary class="flex justify-between items-center cursor-pointer list-none">
+                            <span class="section-title">Inhaltsstoffe (INCI)</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </span>
+                        </summary>
+                        <div class="mt-4 text-sm leading-relaxed text-gray-600 font-light">
+                            Aqua, Glycerin, Copper Tripeptide-1, Palmitoyl Tripeptide-38, Niacinamide, Sodium Hyaluronate, Hydrolyzed Hyaluronic Acid, Sodium Hyaluronate Crosspolymer, Superoxide Dismutase, Panthenol, Allantoin, Carbomer, Sodium Hydroxide, Phenoxyethanol, Ethylhexylglycerin.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="bg-gray-50 py-24 mt-24">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="mono-label mb-4">Molekulare Präzision. Sichtbare Wirkung.</p>
+            <p class="text-xs text-gray-400 tracking-wide">© 2026 BIOCUPRA. Alle Rechte vorbehalten.</p>
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=800&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1617897903246-719242758050?w=800&auto=format&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=800&auto=format&fit=crop&q=80'
+        ];
+        let currentIndex = 0;
+        let quantity = 1;
+
+        function setImage(index) {
+            currentIndex = index;
+            const mainImg = document.getElementById('mainImage');
+            mainImg.style.opacity = '0';
+            setTimeout(() => { mainImg.src = images[index]; mainImg.style.opacity = '1'; }, 200);
+            document.querySelectorAll('.thumbnail').forEach((t, i) => t.classList.toggle('active', i === index));
+            document.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === index));
+        }
+        function changeImage(dir) { setImage((currentIndex + dir + images.length) % images.length); }
+        function updateQty(change) { quantity = Math.max(1, quantity + change); document.getElementById('qty').textContent = quantity; }
+        function addToBag() {
+            const btn = document.querySelector('.btn-primary');
+            const orig = btn.textContent;
+            btn.textContent = 'Hinzugefügt ✓';
+            btn.style.background = '#333';
+            setTimeout(() => { btn.textContent = orig; btn.style.background = '#1a1a1a'; }, 1500);
+        }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    </script>
+</body>
+</html>
